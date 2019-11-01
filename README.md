@@ -42,15 +42,24 @@ We might add more throughout the course of the tutorial, or I may expand the tut
 in the future, but for now, that's a pretty solid, basic "version 1" of a restaurant
 reservation application.
 
+## The Concepts
+
+This tutorial will be more heavily focused on the concepts, simply using Python and Vue(JS)
+as a concrete method of implementing the concepts explained therein. If this becomes a video
+series, it could very possibly end up with each segment being split into two videos, one for
+concept and one for implementation.
+
+_List of concepts coming soon!_
+
 ## The Stack
 
 For simplicity's sake, we won't be using too many technologies.
 
 * Python 3.4+ - might work on lower versions of py3, but I make no guarantees
-* Python's Flask library - a minimal HTTP server library to give us full 
+* Python's Flask library - a minimal HTTP server library to give us full
 architectural control
 * PostgreSQL - no good reason _not_ to
-* VueJS - it's a lightweight, component-based frontend framework with a very 
+* VueJS - it's a lightweight, component-based frontend framework with a very
 low learning curve
 
 The VueJS portion for this tutorial will be very minimal, mostly just there to
