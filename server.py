@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from api.customer import customer_api
 from api.restaurant import restaurant_api
+from api.reservation import reservation_api
 from core import response
 
 class JsonDefaultFlask(Flask):
@@ -12,6 +13,7 @@ app = JsonDefaultFlask(__name__)
 CORS(app)
 app.register_blueprint(customer_api)
 app.register_blueprint(restaurant_api)
+app.register_blueprint(reservation_api)
 
 @app.route("/")
 def hello():
