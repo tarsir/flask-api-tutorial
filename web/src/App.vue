@@ -5,11 +5,14 @@
       <router-link to="/customers">Customers</router-link> |
       <router-link to="/restaurants">Restaurants</router-link>
     </div>
-    <router-view />
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@import "../node_modules/bulma/bulma.sass";
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
