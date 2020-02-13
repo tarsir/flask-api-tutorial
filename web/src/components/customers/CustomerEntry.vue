@@ -25,6 +25,16 @@ export default class CustomerEntry extends Vue {
 </script>
 
 <style scoped lang="scss">
-@import "node_modules/bulma/bulma.sass";
-</style>
+$card-header-background-color: #eee;
 
+@import "node_modules/bulma/bulma.sass";
+
+.card-header {
+  padding: 0.5rem 0.75rem;
+}
+
+.card {
+  border: 1px solid #ddd;
+  margin: 1rem;
+}
+</style>

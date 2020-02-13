@@ -4,11 +4,11 @@
 
         {{ msg }}
 
-        <ul>
-            <li v-for="customer in customers" v-bind:key="customer.email_address">
+        <div class="customer-grid">
+            <div v-for="customer in customers" v-bind:key="customer.email_address">
                 <customer-entry v-bind:customer="customer"></customer-entry>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -55,17 +55,15 @@ export default class CustomerList extends Vue {
 <style scoped lang="scss">
 @import "node_modules/bulma/bulma.sass";
 h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  margin: 0 10px;
+  margin: 2rem 0 0;
 }
 a {
   color: #42b983;
+}
+
+.customer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 </style>
 
