@@ -19,4 +19,4 @@ def make_test_restaurant():
     restaurant.average_table_time = random.randint(5, 150)
     return restaurant
 
-test_restaurants = [make_test_restaurant() for i in range(1, 3)]
+test_restaurants = [make_test_restaurant() for i in range(1, 8)]
