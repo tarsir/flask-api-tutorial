@@ -11,3 +11,11 @@ export async function get(endpoint: string, params: string[] = []) {
 
     return await response.data;
 }
+
+export async function post(endpoint: string, params: {} = {}) {
+    let url = serverUrl + "/" + endpoint;
+
+    const response = await axios.post(url, params);
+
+    return await response.data;
+}

@@ -1,15 +1,16 @@
 <template>
-    <div class="content">
-        <h3>Restaurant List</h3>
+  <div class="content">
+    <button v-on:click="generateRandom">Generate a random restaurant</button>
+    <h3>Restaurant List</h3>
 
-        {{ msg }}
+    {{ msg }}
 
-        <div class="restaurant-grid">
-            <div v-for="restaurant in restaurants" v-bind:key="restaurant.email_address">
-                <restaurant-entry v-bind:restaurant="restaurant"></restaurant-entry>
-            </div>
-        </div>
+    <div class="restaurant-grid">
+      <div v-for="restaurant in restaurants" v-bind:key="restaurant.email_address">
+        <restaurant-entry v-bind:restaurant="restaurant"></restaurant-entry>
+      </div>
     </div>
+  </div>
 
 </template>
 
@@ -17,37 +18,43 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import RestaurantEntry from "@/components/restaurants/RestaurantEntry.vue";
 import { Restaurant } from "@/types/restaurant";
-import { get } from "@/core/api";
+import { get, post } from "@/core/api";
 
 @Component({
-    components: {
-        RestaurantEntry
-    }
+  components: {
+    RestaurantEntry
+  }
 })
 export default class RestaurantList extends Vue {
-    @Prop() private restaurants!: Restaurant[];
-    @Prop() private msg!: string;
+  @Prop() private restaurants!: Restaurant[];
+  @Prop() private msg!: string;
 
-    mounted() {
-        this.getRestaurants();
-    }
+  mounted() {
+    this.getRestaurants();
+  }
 
-    async getRestaurants() {
-        get("restaurants")
-            .then((data: Restaurant[]) => {
-                console.log(data);
-                this.restaurants = data;
-                this.setMessage("Restaurants loaded!");
-            })
-                .catch((err) => {
-                    console.log(err)
-                });
-    }
+  async generateRandom() {
+    console.log("pancakes");
+    await post("generate_restaurant", {});
+    await this.getRestaurants();
+  }
 
-    setMessage(newMessage: string){
-        this.msg = newMessage;
+  async getRestaurants() {
+    get("restaurants")
+      .then((data: Restaurant[]) => {
+        console.log(data);
+        this.restaurants = data;
+        this.setMessage("Restaurants loaded!");
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  }
 
-    }
+  setMessage(newMessage: string){
+    this.msg = newMessage;
+
+  }
 }
 </script>
 
@@ -62,8 +69,8 @@ a {
 }
 
 .restaurant-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 </style>
 

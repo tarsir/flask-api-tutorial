@@ -1,24 +1,30 @@
 import random
 import datetime
 
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
+from core.query import query_full_model, query_full_models
+from db.database_init import get_db_instance
 from db.models.reservation import Reservation
+from db.models.customer import Customer
+from db.models.restaurant import Restaurant
 
 reservation_api = Blueprint('reservation', __name__)
+db = get_db_instance()
 
 @reservation_api.route('/reservations')
 def reservation_list():
-    return jsonify([reservation.__dict__ for reservation in test_reservations])
+    return jsonify(query_full_models(Reservation.query.all()))
 
-def make_test_reservation(guest_count):
-    reservation = Reservation()
-    reservation.guest_count = guest_count
-    reservation.is_confirmed = random.randint(0, 10) % 2 == 1
+@reservation_api.route('/reservations/new', methods=['POST'])
+def add_reservation():
+    print(request.form)
+    customer_id = request.form["customer_id"]
+    if customer_id:
+        print(Customer.query.get(customer_id))
 
-    today = datetime.datetime.now()
-    reservation.time_and_date = today.replace(day=today.day + 7, hour=19)
-    return reservation
+    restaurant_id = request.form["restaurant_id"]
+    if restaurant_id:
+        print(Restaurant.query.get(restaurant_id))
 
-test_reservations = [make_test_reservation(n) for n in range(1, 6)]
-print(test_reservations)
+    return "OK"
