@@ -1,8 +1,10 @@
 <template>
   <div class="content">
-    <h3>Reservation List</h3>
+    <h3>Reservation</h3>
 
     {{ msg }}
+
+    <reservation-form></reservation-form>
 
     <div class="reservation-grid">
       <div v-for="reservation in reservations" v-bind:key="reservation.id">
@@ -16,12 +18,14 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ReservationEntry from "@/components/reservations/ReservationEntry.vue";
+import ReservationForm from "@/components/reservations/ReservationForm.vue";
 import { Reservation } from "@/types/reservation";
 import { get, post } from "@/core/api";
 
 @Component({
   components: {
-    ReservationEntry
+    ReservationEntry,
+    ReservationForm
   }
 })
 export default class ReservationList extends Vue {
